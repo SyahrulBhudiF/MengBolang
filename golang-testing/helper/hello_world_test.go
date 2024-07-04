@@ -39,3 +39,14 @@ func TestSkip(t *testing.T) {
 	result := HelloWorld("John")
 	require.Equal(t, "Hello John", result, "Result must be Hello John")
 }
+
+func TestSubTest(t *testing.T) {
+	t.Run("john", func(t *testing.T) {
+		result := HelloWorld("John")
+		require.Equal(t, "Hello John", result, "Result must be Hello John")
+	})
+	t.Run("doe", func(t *testing.T) {
+		result := HelloWorld("Doe")
+		require.Equal(t, "Hello Doe", result, "Result must be Hello Doe")
+	})
+}
