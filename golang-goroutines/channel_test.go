@@ -2,6 +2,7 @@ package golang_goroutines
 
 import (
 	"fmt"
+	"strconv"
 	"testing"
 	"time"
 )
@@ -62,6 +63,7 @@ func TestInOutChannel(t *testing.T) {
 	time.Sleep(3 * time.Second)
 }
 
+// TestBufferedChannel is a test function that creates a channel with a buffer size of 3 and sends 3 messages to the channel
 func TestBufferedChannel(t *testing.T) {
 	channel := make(chan string, 3)
 	defer close(channel)
@@ -80,4 +82,20 @@ func TestBufferedChannel(t *testing.T) {
 
 	time.Sleep(2 * time.Second)
 	fmt.Println("selesai")
+}
+
+// TestRangeChannel is a test function that creates a channel and sends 10 messages to the channel using a for loop
+func TestRangeChannel(t *testing.T) {
+	channel := make(chan string)
+
+	go func() {
+		for i := 0; i < 10; i++ {
+			channel <- "Perulangan ke " + strconv.Itoa(i)
+		}
+		close(channel)
+	}()
+
+	for data := range channel {
+		fmt.Println(data)
+	}
 }
