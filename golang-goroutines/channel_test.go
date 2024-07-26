@@ -100,6 +100,7 @@ func TestRangeChannel(t *testing.T) {
 	}
 }
 
+// TestSelectChannel is a test function that creates two channels and sends a message to the channel using a for loop
 func TestSelectChannel(t *testing.T) {
 	channel1 := make(chan string)
 	channel2 := make(chan string)
